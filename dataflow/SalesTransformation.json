@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "SnowflakeTarget",
+						"referenceName": "SnowflakeTaRGET",
 						"type": "DatasetReference"
 					},
 					"name": "snowflaketarget"
