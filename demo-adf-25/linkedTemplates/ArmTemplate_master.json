@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake_Conn'"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"ADLS_Conn_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://hierarchstorage25.dfs.core.windows.net/"
@@ -35,6 +39,10 @@
 			"type": "string",
 			"defaultValue": "newadmin"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
 		"Snowflake_Conn_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "SALESMART"
@@ -47,9 +55,9 @@
 			"type": "string",
 			"defaultValue": "iememrw-hr93913.snowflakecomputing.com"
 		},
-		"HttpServer1_properties_typeProperties_url": {
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/"
+			"defaultValue": "1111-194745-34t4y9ds"
 		},
 		"containerUri": {
 			"type": "string",
@@ -87,6 +95,9 @@
 					"Snowflake_Conn_password": {
 						"value": "[parameters('Snowflake_Conn_password')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
 					"ADLS_Conn_properties_typeProperties_url": {
 						"value": "[parameters('ADLS_Conn_properties_typeProperties_url')]"
 					},
@@ -99,6 +110,9 @@
 					"AzureSqlDatabase_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_userName')]"
 					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
 					"Snowflake_Conn_properties_typeProperties_database": {
 						"value": "[parameters('Snowflake_Conn_properties_typeProperties_database')]"
 					},
@@ -108,8 +122,8 @@
 					"Snowflake_Conn_properties_typeProperties_host": {
 						"value": "[parameters('Snowflake_Conn_properties_typeProperties_host')]"
 					},
-					"HttpServer1_properties_typeProperties_url": {
-						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
