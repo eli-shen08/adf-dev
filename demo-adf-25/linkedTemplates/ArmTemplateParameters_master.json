@@ -11,6 +11,9 @@
 		"Snowflake_Conn_password": {
 			"value": ""
 		},
+		"AzureSqlDatabase_password": {
+			"value": ""
+		},
 		"ADLS_Conn_properties_typeProperties_url": {
 			"value": "https://hierarchstorage25.dfs.core.windows.net/"
 		},
@@ -22,6 +25,15 @@
 		},
 		"Snowflake_Conn_properties_typeProperties_host": {
 			"value": "iememrw-hr93913.snowflakecomputing.com"
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "retail-server-25.database.windows.net"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "retail-db"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "newadmin"
 		},
 		"containerUri": {
 			"value": ""
