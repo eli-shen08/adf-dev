@@ -168,7 +168,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "emailBronze",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
@@ -197,6 +197,64 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "BronzeToSilver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "emailBronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/mondal.rahul1999@outlook.com/bronzeToSilver"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "emailSilver",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "BronzeToSilver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"url": "https://prod-12.westus3.logic.azure.com:443/workflows/a632ba1e2500402b9ade8f50bef06852/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=j3f9eDijyQ5vyOfrcf0R425qGT8v0bw-JHeJ9efkzag",
+					"body": {
+						"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectSilver}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgSilver}\"\n}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -211,6 +269,14 @@
 			"msgBody": {
 				"type": "string",
 				"defaultValue": "Bronze layer has been created for retail data from multiple data sources"
+			},
+			"subjectSilver": {
+				"type": "string",
+				"defaultValue": "Silver Layer Created Successfully"
+			},
+			"msgSilver": {
+				"type": "string",
+				"defaultValue": "Silver Layer has been successfully created from bronze layer"
 			}
 		},
 		"annotations": []
