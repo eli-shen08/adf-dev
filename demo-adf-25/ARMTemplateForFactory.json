@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLS_Conn'"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"AzureSqlDatabase_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase'"
@@ -19,13 +23,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake_Conn'"
 		},
-		"AzureDatabricks1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
-		},
 		"ADLS_Conn_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://hierarchstorage25.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1111-194745-34t4y9ds"
 		},
 		"AzureSqlDatabase_properties_typeProperties_server": {
 			"type": "string",
@@ -54,10 +58,6 @@
 		"Snowflake_Conn_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "iememrw-hr93913.snowflakecomputing.com"
-		},
-		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1111-194745-34t4y9ds"
 		}
 	},
 	"variables": {
@@ -317,38 +317,11 @@
 						}
 					},
 					{
-						"name": "BronzeToSilver",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "emailBronze",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/mondal.rahul1999@outlook.com/bronzeToSilver"
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks1",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
 						"name": "emailSilver",
 						"type": "WebActivity",
 						"dependsOn": [
 							{
-								"activity": "BronzeToSilver",
+								"activity": "bronzeToSilver",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -372,6 +345,33 @@
 								"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectSilver}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgSilver}\"\n}",
 								"type": "Expression"
 							}
+						}
+					},
+					{
+						"name": "bronzeToSilver",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "emailBronze",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/mondal.rahul1999@outlook.com/bronzeToSilver"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
 						}
 					}
 				],
@@ -643,6 +643,24 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-3706004675049391.11.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -779,24 +797,6 @@
 				"[concat(variables('factoryId'), '/datasets/salessource')]",
 				"[concat(variables('factoryId'), '/datasets/SnowflakeTaRGET')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-3706004675049391.11.azuredatabricks.net",
-					"accessToken": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDatabricks1_accessToken')]"
-					},
-					"existingClusterId": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }

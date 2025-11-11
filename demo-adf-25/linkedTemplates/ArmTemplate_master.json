@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLS_Conn'"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"AzureSqlDatabase_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase'"
@@ -19,13 +23,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Snowflake_Conn'"
 		},
-		"AzureDatabricks1_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
-		},
 		"ADLS_Conn_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://hierarchstorage25.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1111-194745-34t4y9ds"
 		},
 		"AzureSqlDatabase_properties_typeProperties_server": {
 			"type": "string",
@@ -54,10 +58,6 @@
 		"Snowflake_Conn_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "iememrw-hr93913.snowflakecomputing.com"
-		},
-		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "1111-194745-34t4y9ds"
 		},
 		"containerUri": {
 			"type": "string",
@@ -89,17 +89,20 @@
 					"ADLS_Conn_accountKey": {
 						"value": "[parameters('ADLS_Conn_accountKey')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
 					"AzureSqlDatabase_password": {
 						"value": "[parameters('AzureSqlDatabase_password')]"
 					},
 					"Snowflake_Conn_password": {
 						"value": "[parameters('Snowflake_Conn_password')]"
 					},
-					"AzureDatabricks1_accessToken": {
-						"value": "[parameters('AzureDatabricks1_accessToken')]"
-					},
 					"ADLS_Conn_properties_typeProperties_url": {
 						"value": "[parameters('ADLS_Conn_properties_typeProperties_url')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					},
 					"AzureSqlDatabase_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_server')]"
@@ -121,9 +124,6 @@
 					},
 					"Snowflake_Conn_properties_typeProperties_host": {
 						"value": "[parameters('Snowflake_Conn_properties_typeProperties_host')]"
-					},
-					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
-						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},
