@@ -112,8 +112,55 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "successEmail",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "ForEach",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-10.northcentralus.logic.azure.com:443/workflows/84f7ac825ebb4f29af27861de61776ab/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=66Uqg0n3iyVTfUwF7gzqE3Iiduj5LXJMkJad6gCafBA",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "appliation/json"
+					},
+					"timeout": "00:10:00"
+				}
 			}
 		],
+		"parameters": {
+			"subjectForSuccess": {
+				"type": "string",
+				"defaultValue": "Bronze Layer Created"
+			},
+			"messageForSuccess": {
+				"type": "string",
+				"defaultValue": "Bronze layer has been completed, data has been ingested from multiple sources."
+			},
+			"subjectForFailure": {
+				"type": "string",
+				"defaultValue": "Bronze Layer Failed"
+			},
+			"messageForFailure": {
+				"type": "string",
+				"defaultValue": "Bronze layer could not be created some error occured"
+			},
+			"to": {
+				"type": "string",
+				"defaultValue": "mondal.rahul1999@gmail.com"
+			}
+		},
 		"annotations": []
 	}
 }
