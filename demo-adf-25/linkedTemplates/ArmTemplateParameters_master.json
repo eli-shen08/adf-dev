@@ -35,6 +35,9 @@
 		"Snowflake_Conn_properties_typeProperties_host": {
 			"value": "iememrw-hr93913.snowflakecomputing.com"
 		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
 		"containerUri": {
 			"value": ""
 		},
