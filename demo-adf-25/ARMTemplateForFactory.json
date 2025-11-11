@@ -243,7 +243,7 @@
 							},
 							"url": "https://prod-10.northcentralus.logic.azure.com:443/workflows/84f7ac825ebb4f29af27861de61776ab/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=66Uqg0n3iyVTfUwF7gzqE3Iiduj5LXJMkJad6gCafBA",
 							"body": {
-								"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectForSuccess}\",\n    \"msgBody\" : \"@{pipeline().parameters.body}\"\n}",
+								"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectForSuccess}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgBody}\"\n}",
 								"type": "Expression"
 							}
 						}
@@ -261,7 +261,7 @@
 						"type": "string",
 						"defaultValue": "Bronze Layer Created Successfully"
 					},
-					"body": {
+					"msgBody": {
 						"type": "string",
 						"defaultValue": "Bronze layer has been created for retail data from multiple data sources"
 					}
