@@ -199,38 +199,11 @@
 				}
 			},
 			{
-				"name": "BronzeToSilver",
-				"type": "DatabricksNotebook",
-				"dependsOn": [
-					{
-						"activity": "emailBronze",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebookPath": "/Users/mondal.rahul1999@outlook.com/bronzeToSilver"
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureDatabricks1",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "emailSilver",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "BronzeToSilver",
+						"activity": "bronzeToSilver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -254,6 +227,33 @@
 						"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectSilver}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgSilver}\"\n}",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "bronzeToSilver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "emailBronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/mondal.rahul1999@outlook.com/bronzeToSilver"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks1",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
