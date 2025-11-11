@@ -11,29 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLS_Conn'"
 		},
-		"Snowflake_Conn_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Snowflake_Conn'"
-		},
 		"AzureSqlDatabase_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSqlDatabase'"
 		},
+		"Snowflake_Conn_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake_Conn'"
+		},
 		"ADLS_Conn_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://hierarchstorage25.dfs.core.windows.net/"
-		},
-		"Snowflake_Conn_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "SALESMART"
-		},
-		"Snowflake_Conn_properties_typeProperties_role": {
-			"type": "string",
-			"defaultValue": "ACCOUNTADMIN"
-		},
-		"Snowflake_Conn_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "iememrw-hr93913.snowflakecomputing.com"
 		},
 		"AzureSqlDatabase_properties_typeProperties_server": {
 			"type": "string",
@@ -46,6 +34,18 @@
 		"AzureSqlDatabase_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "newadmin"
+		},
+		"Snowflake_Conn_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SALESMART"
+		},
+		"Snowflake_Conn_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
+		},
+		"Snowflake_Conn_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "iememrw-hr93913.snowflakecomputing.com"
 		},
 		"containerUri": {
 			"type": "string",
@@ -77,23 +77,14 @@
 					"ADLS_Conn_accountKey": {
 						"value": "[parameters('ADLS_Conn_accountKey')]"
 					},
-					"Snowflake_Conn_password": {
-						"value": "[parameters('Snowflake_Conn_password')]"
-					},
 					"AzureSqlDatabase_password": {
 						"value": "[parameters('AzureSqlDatabase_password')]"
 					},
+					"Snowflake_Conn_password": {
+						"value": "[parameters('Snowflake_Conn_password')]"
+					},
 					"ADLS_Conn_properties_typeProperties_url": {
 						"value": "[parameters('ADLS_Conn_properties_typeProperties_url')]"
-					},
-					"Snowflake_Conn_properties_typeProperties_database": {
-						"value": "[parameters('Snowflake_Conn_properties_typeProperties_database')]"
-					},
-					"Snowflake_Conn_properties_typeProperties_role": {
-						"value": "[parameters('Snowflake_Conn_properties_typeProperties_role')]"
-					},
-					"Snowflake_Conn_properties_typeProperties_host": {
-						"value": "[parameters('Snowflake_Conn_properties_typeProperties_host')]"
 					},
 					"AzureSqlDatabase_properties_typeProperties_server": {
 						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_server')]"
@@ -103,6 +94,15 @@
 					},
 					"AzureSqlDatabase_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_userName')]"
+					},
+					"Snowflake_Conn_properties_typeProperties_database": {
+						"value": "[parameters('Snowflake_Conn_properties_typeProperties_database')]"
+					},
+					"Snowflake_Conn_properties_typeProperties_role": {
+						"value": "[parameters('Snowflake_Conn_properties_typeProperties_role')]"
+					},
+					"Snowflake_Conn_properties_typeProperties_host": {
+						"value": "[parameters('Snowflake_Conn_properties_typeProperties_host')]"
 					}
 				}
 			},
