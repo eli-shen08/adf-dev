@@ -309,7 +309,7 @@
 					},
 					"url": "https://prod-12.westus3.logic.azure.com:443/workflows/a632ba1e2500402b9ade8f50bef06852/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=j3f9eDijyQ5vyOfrcf0R425qGT8v0bw-JHeJ9efkzag",
 					"body": {
-						"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectSilver}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgGold}\"\n}",
+						"value": "{\n    \"to\" : \"@{pipeline().parameters.to}\",\n    \"subject\" : \"@{pipeline().parameters.subjectGold}\",\n    \"msgBody\" : \"@{pipeline().parameters.msgGold}\"\n}",
 						"type": "Expression"
 					}
 				}
